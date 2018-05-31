@@ -34,7 +34,7 @@ export default class App extends Component {
     return (
       <main>
         <header>
-          <h1>Explore the Museum</h1>
+          <h1>Explore the Cooper Hewitt Smithsonian Design Museum</h1>
           <Search onSearch={this.handleSearch}/>
         </header>
         <section>
