@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import retrieve from '../services/ch-api';
 import Search from './Search';
+import Items from './Items';
 
 export default class App extends Component {
   state = {
@@ -9,7 +10,7 @@ export default class App extends Component {
     page: 1,
     perPage: 10,
     totalResults: 0,
-    objects: []
+    items: []
   };
 
   searchMuseum = () => {
@@ -17,7 +18,7 @@ export default class App extends Component {
 
     retrieve(color, page, perPage)
       .then(({ objects, total }) => {
-        this.setState({ objects, totalResults: total, error: null });
+        this.setState({ items: objects, totalResults: total, error: null });
       }, error => {
         this.setState({ error });
       });
@@ -29,12 +30,16 @@ export default class App extends Component {
   };
 
   render() {
+    const { items } = this.state;
     return (
       <main>
         <header>
           <h1>Explore the Museum</h1>
           <Search onSearch={this.handleSearch}/>
         </header>
+        <section>
+          <Items items={items}/>
+        </section>
       </main>
     );
   }
