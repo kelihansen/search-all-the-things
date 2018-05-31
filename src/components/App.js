@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import retrieve from '../services/ch-api';
 import Search from './Search';
+import Results from './Results';
 import Items from './Items';
+import '../styles/App.css';
 
 export default class App extends Component {
   state = {
@@ -9,7 +11,7 @@ export default class App extends Component {
     error: null,
     page: 1,
     perPage: 10,
-    totalResults: 0,
+    totalResults: undefined,
     items: []
   };
 
@@ -30,14 +32,21 @@ export default class App extends Component {
   };
 
   render() {
-    const { items } = this.state;
+    const { color, page, perPage, totalResults, items } = this.state;
     return (
       <main>
         <header>
-          <h1>Explore the Cooper Hewitt Smithsonian Design Museum</h1>
+          <h1 style={{ backgroundColor: '#' + color }}>Explore the Cooper Hewitt Smithsonian Design Museum</h1>
           <Search onSearch={this.handleSearch}/>
         </header>
         <section>
+          <Results
+            totalResults={totalResults}
+            color={color}
+            page={page}
+            perPage={perPage}
+            onPage={this.handlePage}
+          />
           <Items items={items}/>
         </section>
       </main>
