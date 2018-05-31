@@ -9,9 +9,9 @@ export default class Results extends Component {
 
   render() {
 
-    const { totalResults, color, page, perPage } = this.props;
+    const { totalResults, color, page, perPage, loading } = this.props;
     const totalPages = Math.ceil(totalResults / perPage);    
-    
+    if(loading) return <section></section>;
     return (
       <section>
         {totalResults !== undefined && <h2>{totalResults} results found for color #{color}</h2>}

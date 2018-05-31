@@ -13,5 +13,6 @@ button:active {
 }
 
 button[disabled] {
-  color: #bbb;  
+  color: #bbb;
+  background-color: white;
 }

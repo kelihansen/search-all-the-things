@@ -8,6 +8,7 @@ import '../styles/App.css';
 export default class App extends Component {
   state = {
     color: '',
+    loading: false,
     error: null,
     page: 1,
     perPage: 10,
@@ -18,12 +19,15 @@ export default class App extends Component {
   searchMuseum = () => {
     const { color, page, perPage } = this.state;
 
+    this.setState({ loading: true });
+
     retrieve(color, page, perPage)
       .then(({ objects, total }) => {
         this.setState({ items: objects, totalResults: total, error: null });
       }, error => {
         this.setState({ error });
-      });
+      })
+      .then(() => this.setState({ loading: false }));
   };
 
   handleSearch = ({ search }) => {
@@ -36,24 +40,30 @@ export default class App extends Component {
   };
 
   render() {
-    const { color, page, perPage, totalResults, items } = this.state;
+    const { color, loading, error, page, perPage, totalResults, items } = this.state;
     return (
-      <main>
+      <div>
         <header>
           <h1 style={{ backgroundColor: '#' + color }}>Explore the Cooper Hewitt Smithsonian Design Museum</h1>
           <Search onSearch={this.handleSearch}/>
         </header>
-        <section>
-          <Results
-            totalResults={totalResults}
-            color={color}
-            page={page}
-            perPage={perPage}
-            onPage={this.handlePage}
-          />
-          <Items items={items}/>
-        </section>
-      </main>
+        <main>
+          <section>
+            {loading && <h2>Retrieving results...</h2>}
+            {error && <h2>Error: {error.message}</h2>}
+          </section>
+          <section>
+            <Results
+              loading={loading}
+              totalResults={totalResults}
+              color={color}
+              page={page}
+              perPage={perPage}
+              onPage={this.handlePage}/>
+            <Items items={items}/>
+          </section>
+        </main>
+      </div>
     );
   }
 }
