@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import '../styles/Results.css';
 
 export default class Results extends Component {
+  handlePage(increment) {
+    const { page, onPage } = this.props;
+    onPage({ page: page + increment });
+  }
+
   render() {
 
     const { totalResults, color, page, perPage } = this.props;

@@ -31,6 +31,10 @@ export default class App extends Component {
     this.setState({ color: colorMinusHash }, this.searchMuseum);
   };
 
+  handlePage = ({ page }) => {
+    this.setState({ page }, this.searchMuseum);
+  };
+
   render() {
     const { color, page, perPage, totalResults, items } = this.state;
     return (

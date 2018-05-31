@@ -4,6 +4,14 @@ button {
   padding: 0.2em;
 }
 
+button:hover {
+  background-color: #bbb;  
+}
+
+button:active {
+  background-color: #888;  
+}
+
 button[disabled] {
   color: #bbb;  
 }
