@@ -5,7 +5,7 @@ const throwJson = json => { throw json; };
 const get = url => fetch(url)
   .then(r => r.ok ? r.json() : r.json().then(throwJson));
 
-export default function search(color, page = 1, pageQuantity = 10) {
-  return get(`${BASE_QUERY}&color=${color}&page=${page}&per_page=${pageQuantity}`);
+export default function retrieve(color, page, perPage) {
+  return get(`${BASE_QUERY}&color=${color}&page=${page}&per_page=${perPage}`);
 }
 
