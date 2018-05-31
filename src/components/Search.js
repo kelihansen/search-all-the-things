@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 
 export default class Search extends Component {
   state = {
-    search: '#ffffff'
+    search: '#b8b8b8'
   };
 
   handleChange = ({ target }) => {
-    this.setState({ search: target.value });
+    this.setState({ search: target.value }, this.submitValue);
+  };
+  
+  submitValue = () => {
     this.props.onSearch(this.state);
   };
 
