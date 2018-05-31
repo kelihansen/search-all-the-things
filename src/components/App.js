@@ -32,7 +32,7 @@ export default class App extends Component {
 
   handleSearch = ({ search }) => {
     const colorMinusHash = search.slice(1);
-    this.setState({ color: colorMinusHash }, this.searchMuseum);
+    this.setState({ color: colorMinusHash, page: 1 }, this.searchMuseum);
   };
 
   handlePage = ({ page }) => {
