@@ -7,7 +7,7 @@ import '../styles/App.css';
 
 export default class App extends Component {
   state = {
-    color: '',
+    color: 'ffffff',
     loading: false,
     error: null,
     page: 1,
@@ -45,10 +45,12 @@ export default class App extends Component {
       <div>
         <header>
           <h1 style={{ backgroundColor: '#' + color }}>Explore the Cooper Hewitt Smithsonian Design Museum</h1>
-          <Search onSearch={this.handleSearch}/>
+          <section className="search-container">
+            <Search onSearch={this.handleSearch}/>
+          </section>
         </header>
         <main>
-          <section>
+          <section className="status">
             {loading && <h2>Retrieving results...</h2>}
             {error && <h2>Error: {error.message}</h2>}
           </section>

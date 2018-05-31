@@ -1,7 +1,9 @@
 button {
   font-size: 1.5em;
-  color: black;
-  padding: 0.2em;
+  color: #333;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0.2rem;
 }
 
 button:hover {
@@ -15,4 +17,22 @@ button:active {
 button[disabled] {
   color: #bbb;
   background-color: white;
+}
+
+.results-holder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 5em;
+  width: 66%;
+  margin: 0 auto;
+  padding: 1rem 1rem 0 1rem;
+}
+
+.results-info {
+}
+
+.page-info {
+  display: flex;
+  align-items: center;
 }
