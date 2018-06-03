@@ -9,10 +9,12 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path,
-    filename: 'bundle.[hash].js'
+    filename: 'bundle.[hash].js',
+    publicPath: '/'
   },
   devServer: {
-    contentBase: `./${buildDir}`
+    contentBase: `./${buildDir}`,
+    historyApiFallback: true
   },
   devtool: 'inline-source-map',
   plugins: [
