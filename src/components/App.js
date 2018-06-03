@@ -3,7 +3,7 @@ import retrieve from '../services/ch-api';
 import Search from './Search';
 import Results from './Results';
 import Items from './Items';
-import '../styles/App.css';
+import './App.css';
 
 export default class App extends Component {
   state = {

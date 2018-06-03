@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/Results.css';
+import './Results.css';
 
 export default class Results extends Component {
   handlePage(increment) {
