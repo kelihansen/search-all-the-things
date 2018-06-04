@@ -80,7 +80,7 @@ export default class Search extends Component {
     return (
       <section>
         <SearchInput searchTerm={color} onSearch={this.handleSearch}/>
-        {(loading || error) && <Status loading={loading} error={error}/>}
+        <Status loading={loading} error={error}/>
         {searchTerms && searchTerms.color && <Results
           color={color}
           page={page}
