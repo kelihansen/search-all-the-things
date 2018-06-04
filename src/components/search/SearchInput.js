@@ -10,12 +10,12 @@ export default class SearchInput extends Component {
   };
 
   state = {
-    current: this.props.searchTerm || '#b8b8b8'
+    current: this.props.searchTerm ? '#' + this.props.searchTerm : '#b8b8b8'
   };
 
   componentWillReceiveProps({ searchTerm }) {
     if(searchTerm !== this.state.current) {
-      this.setState({ current: searchTerm || '#b8b8b8' });
+      this.setState({ current: searchTerm ? '#' + searchTerm : '#b8b8b8' });
     }
   }
 
@@ -24,7 +24,9 @@ export default class SearchInput extends Component {
   };
 
   callSearch() {
-    this.props.onSearch(this.state);
+    const { current } = this.state;
+    const colorMinusHash = current.slice(1);
+    this.props.onSearch(colorMinusHash);
   }
 
   render() {
