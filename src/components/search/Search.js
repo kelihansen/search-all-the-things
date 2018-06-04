@@ -20,12 +20,12 @@ export default class Search extends Component {
   state = {
     searchTerms: {
       color: '',
-      page: null,
-      perPage: null
+      page: 0,
+      perPage: 0
     },
     loading: false,
     error: null,
-    totalResults: undefined,
+    totalResults: 0,
     items: []
   };
 
@@ -50,8 +50,12 @@ export default class Search extends Component {
     const { color, page, perPage } = searchTerms;
     retrieve(color, page, perPage)
       .then(({ objects, total, page, per_page: perPage }) => {
-        this.setState({ items: objects, totalResults: total, error: null });
-        this.setState(prevState => ({ searchTerms: { ...prevState.searchTerms, page, perPage } }));
+        this.setState(prevState => ({
+          searchTerms: { ...prevState.searchTerms, page, perPage },
+          items: objects,
+          totalResults: total,
+          error: null })
+        );
       }, error => {
         this.setState({ error });
       })
@@ -71,19 +75,19 @@ export default class Search extends Component {
 
   render() {
     const { searchTerms, loading, error, totalResults, items } = this.state;
-    const { color, page, perPage } = searchTerms ? searchTerms : '';
+    const { color, page, perPage } = searchTerms || '';
 
     return (
       <section>
         <SearchInput searchTerm={color} onSearch={this.handleSearch}/>
-        <Status loading={loading} error={error}/>
-        <Results
-          loading={loading}
-          totalResults={totalResults}
+        {(loading || error) && <Status loading={loading} error={error}/>}
+        {searchTerms && searchTerms.color && <Results
           color={color}
           page={page}
           perPage={perPage}
-          onPage={this.handlePage}/>
+          loading={loading}
+          totalResults={totalResults}
+          onPage={this.handlePage}/>}
         <Items items={items}/>
       </section>
     );
