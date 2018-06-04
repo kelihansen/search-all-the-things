@@ -1,0 +1,10 @@
+.status {
+  min-height: 4em;
+  padding: 1rem;
+}
+
+h2 {
+  font-size: 1.25em;
+  text-align: center;
+  font-style: oblique;
+}
