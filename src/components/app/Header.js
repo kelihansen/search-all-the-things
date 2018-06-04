@@ -10,10 +10,10 @@ export default class Header extends Component {
 
   render() {
     const { color } = this.props;
-    
+
     return (
       <header style={{ backgroundColor: '#' + color }} className={styles.header}>
-        <h1>Explore the Cooper Hewitt Smithsonian Design Museum</h1>
+        <h1>Explore the Museum</h1>
         <nav>
           <ul>
             <li><Link to="/">Home</Link></li>
