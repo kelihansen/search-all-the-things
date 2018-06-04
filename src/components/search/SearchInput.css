@@ -1,0 +1,19 @@
+:local(.search) {
+  border-top: 0.5em solid #ccc;
+  background-color: white;
+  label {
+    font-size: 1.5em;
+    line-height: 3em;
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+  }
+  input {
+    height: 3em;
+    width: 3em;
+    vertical-align: middle;
+    margin: 0.5rem;
+    background-color: white;
+  }
+}
+

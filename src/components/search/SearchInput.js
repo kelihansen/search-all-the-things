@@ -31,7 +31,7 @@ export default class SearchInput extends Component {
     const { current } = this.state;
 
     return (
-      <section className="search-bar">
+      <section className={styles.search}>
         <label>
         Select a color to search by:
           <input
