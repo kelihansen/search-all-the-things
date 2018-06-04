@@ -1,8 +1,13 @@
 :local(.home) {
   margin: 4rem auto 0 auto;
+  padding: 1rem;
+  background-color: white;
   p {
     text-align: center;
     font-size: 1.5em;
-    margin-bottom: 2rem;
+    margin: 2rem 0;
+  }
+  a {
+    color: #e64650;
   }
 }
