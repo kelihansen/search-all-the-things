@@ -7,15 +7,27 @@ import ItemDetail from '../items/ItemDetail';
 import './App.css';
 
 export default class App extends Component {
+  state = {
+    color: 'ffffff'
+  };
+
+  handleColor = color => {
+    this.setState({ color });
+  };
+
   render() {
+    const { color } = this.state;
+
     return (
       <Router>
         <div>
-          <Header/>
+          <Header color={color}/>
           <main>
             <Switch>
               <Route exact path="/" component={Home}/>
-              <Route path="/search" component={Search}/>
+              <Route path="/search" render={({ location, history }) => {
+                return <Search location={location} history={history} onColor={this.handleColor}/>;
+              }}/>
               <Route path="/items/:id" render={({ match, history }) => {
                 return <ItemDetail objectID={match.params.id} history={history}/>;
               }}/>

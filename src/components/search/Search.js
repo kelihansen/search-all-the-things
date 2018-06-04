@@ -14,7 +14,8 @@ const getSearch = location => location ? location.search : '';
 export default class Search extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired
+    location: PropTypes.object.isRequired,
+    onColor: PropTypes.func
   };
 
   state = {
@@ -56,6 +57,7 @@ export default class Search extends Component {
           totalResults: total,
           error: null })
         );
+        this.props.onColor(color);
       }, error => {
         this.setState({ error });
       })
