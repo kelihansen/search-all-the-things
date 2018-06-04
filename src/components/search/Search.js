@@ -70,7 +70,8 @@ export default class Search extends Component {
   };
 
   handlePage = ({ page }) => {
-    this.setState(prevState => ({ searchTerms: { ...prevState.searchTerms, page } }), this.searchFromQuery);
+    const { color } = this.state.searchTerms;
+    this.props.history.push({ search: queryString.stringify({ color, page }) });
   };
 
   render() {
@@ -81,7 +82,7 @@ export default class Search extends Component {
       <section>
         <SearchInput searchTerm={color} onSearch={this.handleSearch}/>
         <Status loading={loading} error={error}/>
-        {searchTerms && searchTerms.color && <Results
+        {totalResults && <Results
           color={color}
           page={page}
           perPage={perPage}
