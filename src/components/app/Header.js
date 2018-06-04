@@ -10,7 +10,7 @@ export default class Header extends Component {
         <nav>
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/search">Search</Link></li>
+            <li><Link to="/search">New Search</Link></li>
           </ul>
         </nav>
       </header>
