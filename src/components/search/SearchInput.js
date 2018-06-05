@@ -1,6 +1,7 @@
 /* eslint react/no-deprecated:off */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { ChromePicker } from 'react-color';
 import styles from './SearchInput.css';
 
 export default class SearchInput extends Component {
@@ -10,17 +11,17 @@ export default class SearchInput extends Component {
   };
 
   state = {
-    current: this.props.searchTerm ? '#' + this.props.searchTerm : '#b8b8b8'
+    current: this.props.searchTerm ? '#' + this.props.searchTerm : '#3f8177'
   };
 
   componentWillReceiveProps({ searchTerm }) {
     if(searchTerm !== this.state.current) {
-      this.setState({ current: searchTerm ? '#' + searchTerm : '#b8b8b8' });
+      this.setState({ current: searchTerm ? '#' + searchTerm : '#3f8177' });
     }
   }
 
-  handleChange = ({ target }) => {
-    this.setState({ current: target.value }, this.callSearch);
+  handleChangeComplete = ({ hex }) => {
+    this.setState({ current: hex }, this.callSearch);
   };
 
   callSearch() {
@@ -36,11 +37,7 @@ export default class SearchInput extends Component {
       <section className={styles.search}>
         <label>
         Select a color to search by:
-          <input
-            type="color"
-            value={current}
-            onChange={this.handleChange}  
-          />
+          <ChromePicker color={current} disableAlpha={true} onChangeComplete={ this.handleChangeComplete }/>
         </label>
       </section>
     );
