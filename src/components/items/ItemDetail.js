@@ -38,7 +38,7 @@ export default class ItemDetail extends Component {
           <p><span>{item.object.medium}</span></p>
           <p>{item.object.description}</p>
         </div>
-        <a onClick={this.handleBack}><span>back</span></a>
+        <a onClick={this.handleBack}><span>back to search</span></a>
       </article>
     );
   }
