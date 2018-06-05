@@ -6,6 +6,8 @@ Using webpack and React to create an app that allows a user to search Cooper Hew
 ## Contributors
 Keli Hansen
 
+Color picker: http://casesandberg.github.io/react-color/
+
 ## How it works
 1. Clone repo to your machine and run ```npm i```.
 1. Get yourself a [Cooper Hewitt API token](https://collection.cooperhewitt.org/api/oauth2/authenticate/like-magic/)
