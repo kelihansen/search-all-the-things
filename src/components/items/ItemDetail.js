@@ -33,10 +33,12 @@ export default class ItemDetail extends Component {
 
       <article className={styles['item-detail']}>
         <div>
-          <img src={item.object.images[0].n.url} alt={item.object.title}/>
+          <img src={item.object.images[0].z.url} alt={item.object.title}/>
           <h3>{item.object.title}</h3>
+          <p><span>{item.object.medium}</span></p>
           <p>{item.object.description}</p>
         </div>
+        <a onClick={this.handleBack}><span>back</span></a>
       </article>
     );
   }
