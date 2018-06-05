@@ -48,7 +48,7 @@ export default class Search extends Component {
         totalResults: null,
         error: null })
       );
-      this.props.onColor();
+      this.props.onColor('ffffff');
       return;    
     }
     const searchTerms = queryString.parse(query);
@@ -83,6 +83,10 @@ export default class Search extends Component {
     const { color } = this.state.searchTerms;
     this.props.history.push({ search: queryString.stringify({ color, page }) });
   };
+
+  componentWillUnmount() {
+    this.props.onColor('ffffff');
+  }
 
   render() {
     const { searchTerms, loading, error, totalResults, items } = this.state;
