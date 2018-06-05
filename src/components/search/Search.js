@@ -1,4 +1,3 @@
-/* eslint react/no-deprecated:off */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
@@ -26,29 +25,39 @@ export default class Search extends Component {
     },
     loading: false,
     error: null,
-    totalResults: 0,
+    totalResults: null,
     items: []
   };
 
   componentDidMount() {
-    if(this.props.location.search) this.searchFromQuery(this.props.location.search);
+    this.props.location.search && this.searchFromQuery(this.props.location.search);
   }
 
-  componentWillReceiveProps({ location }) {
-    const next = getSearch(location);
-    const current = getSearch(this.props.location);
+  componentDidUpdate({ location }) {
+    const next = getSearch(this.props.location);
+    const current = getSearch(location);
     if(current === next) return;
     this.searchFromQuery(next);
   }
 
   searchFromQuery = query => {
+    if(!query) {
+      this.setState(prevState => ({
+        searchTerms: { ...prevState.searchTerms, color: '' },
+        items: [],
+        totalResults: null,
+        error: null })
+      );
+      this.props.onColor();
+      return;    
+    }
     const searchTerms = queryString.parse(query);
     this.setState({ searchTerms });
-    if(!searchTerms) return;
 
     this.setState({ loading: true });
 
     const { color, page, perPage } = searchTerms;
+    this.props.onColor(color);
     retrieve(color, page, perPage)
       .then(({ objects, total, page, per_page: perPage }) => {
         this.setState(prevState => ({
@@ -57,7 +66,6 @@ export default class Search extends Component {
           totalResults: total,
           error: null })
         );
-        this.props.onColor(color);
       }, error => {
         this.setState({ error });
       })
@@ -84,7 +92,7 @@ export default class Search extends Component {
       <section>
         <SearchInput searchTerm={color} onSearch={this.handleSearch}/>
         <Status loading={loading} error={error}/>
-        {totalResults && <Results
+        {totalResults !== null && <Results
           color={color}
           page={page}
           perPage={perPage}

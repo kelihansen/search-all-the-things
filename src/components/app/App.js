@@ -12,7 +12,7 @@ export default class App extends Component {
   };
 
   handleColor = color => {
-    this.setState({ color });
+    this.setState({ color: color || 'ffffff' });
   };
 
   render() {
