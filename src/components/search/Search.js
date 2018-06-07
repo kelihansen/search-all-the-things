@@ -6,7 +6,6 @@ import SearchInput from './SearchInput';
 import Status from './Status';
 import Results from './Results';
 import Items from '../items/Items';
-import './Search.css';
 
 const getSearch = location => location ? location.search : '';
 

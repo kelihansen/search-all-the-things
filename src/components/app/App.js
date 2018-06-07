@@ -4,7 +4,6 @@ import Header from './Header';
 import Home from './Home';
 import Search from '../search/Search';
 import ItemDetail from '../items/ItemDetail';
-import './App.css';
 
 export default class App extends Component {
   state = {
