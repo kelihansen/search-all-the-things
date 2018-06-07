@@ -1,4 +1,4 @@
-const ACCESS_TOKEN = ''; // <-- paste yours between the quotes
+const ACCESS_TOKEN = ''; /* <-- paste yours between the quotes */
 const BASE_QUERY = 'https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.';
 const COLLECTION_QUERY = `${BASE_QUERY}search.objects&access_token=${ACCESS_TOKEN}`;
 const OBJECT_QUERY = `${BASE_QUERY}objects.getInfo&access_token=${ACCESS_TOKEN}`;
