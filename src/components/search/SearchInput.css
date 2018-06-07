@@ -1,5 +1,4 @@
 :local(.search) {
-  border-top: 0.5em solid #ccc;
   background-color: white;
   padding-bottom: 2rem;
   label {
@@ -10,10 +9,7 @@
     width: fit-content;
   }
   input {
-    // height: 3em;
-    // width: 3em;
-    // vertical-align: middle;
-    margin: 2.1rem 0.5rem 0.5rem 0.5rem;
+    margin: 1.5rem 0.5rem 0.5rem 0.5rem;
   }
 }
 

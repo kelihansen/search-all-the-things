@@ -1,6 +1,6 @@
 :local(.status) {
-  min-height: 4em;
-  padding: 1rem;
+  min-height: 3em;
+  padding-top: 1rem;
   h2 {
     font-size: 1.25em;
     text-align: center;
