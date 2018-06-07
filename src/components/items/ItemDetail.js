@@ -28,13 +28,16 @@ export default class ItemDetail extends Component {
     const { item } = this.state;
 
     if(item === null) return null;
+
+    const { images, title, medium, description } = item.object;
+
     return (
       <article className={styles['item-detail']}>
         <div>
-          <img src={item.object.images[0].z.url} alt={item.object.title}/>
-          <h3>{item.object.title}</h3>
-          <p><span>{item.object.medium}</span></p>
-          <p>{item.object.description}</p>
+          <img src={images[0].z.url} alt={title}/>
+          <h3>{title}</h3>
+          <p><span>{medium}</span></p>
+          <p>{description}</p>
         </div>
         <a onClick={this.handleBack}><span>back to search</span></a>
       </article>
