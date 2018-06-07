@@ -6,7 +6,7 @@ import styles from './ItemDetail.css';
 export default class ItemDetail extends Component {
   static propTypes = {
     objectID: PropTypes.string.isRequired,
-    history: PropTypes.object
+    history: PropTypes.object.isRequired
   };
 
   state = {
@@ -28,9 +28,7 @@ export default class ItemDetail extends Component {
     const { item } = this.state;
 
     if(item === null) return null;
-
     return (
-
       <article className={styles['item-detail']}>
         <div>
           <img src={item.object.images[0].z.url} alt={item.object.title}/>
