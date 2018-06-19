@@ -1,6 +1,7 @@
 import {
   color,
-  COLOR_UPDATE
+  COLOR_UPDATE,
+  getCurrentColor
 } from './reducers';
 
 describe('color reducer', () => {
@@ -13,5 +14,13 @@ describe('color reducer', () => {
     const code = '4567ba';
     const state = color(null, { type: COLOR_UPDATE, payload: code });
     expect(state).toBe(code);
+  });
+});
+
+describe('selectors', () => {
+  it('gets the current color', () => {
+    const color = 'ffffff';
+    const got = getCurrentColor({ color });
+    expect(got).toEqual(color);
   });
 });
