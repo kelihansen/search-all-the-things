@@ -34,6 +34,12 @@ module.exports = router
 
             return User.findOne({ email })
                 .then(user => {
+                    if(!user || !user.comparePassword(password)) {
+                        throw {
+                            status: 401,
+                            error: 'invalid email or password'
+                        };
+                    }
                     return { token: sign(user) };
                 });
         }

@@ -40,4 +40,15 @@ describe('auth API', () => {
                 assert.ok(body.token);
             });
     });
+
+    it('responds with a 401 on non-existent email', () => {
+        return request.post('/api/auth/signin')
+            .send({
+                email: 'imposter@email.com',
+                password: 'abc'
+            })
+            .then(res => {
+                assert.equal(res.status, 401);
+            });
+    });
 });
