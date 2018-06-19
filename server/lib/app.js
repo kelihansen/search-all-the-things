@@ -12,7 +12,7 @@ const auth = require('./routes/auth');
 const items = require('./routes/items');
 
 app.use('/api/auth', auth);
-app.use('/api/items', /* ensureAuth, */ items);
+app.use('/api/items', ensureAuth, items);
 
 app.use((req, res) => {
     res.sendFile('index.html', { root: './public' });
