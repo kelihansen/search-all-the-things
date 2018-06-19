@@ -7,29 +7,34 @@
     "lib": "lib"
   },
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint lib test",
     "pretest": "npm run lint",
-    "test": "npm run mocha",
-    "mocha": "mocha --recursive",
-    "test:dev": "nodemon --exec 'npm run mocha'",
-    "test:unit": "nodemon --exec 'npm run mocha -- ./test/unit'",
-    "test:e2e": "nodemon --exec 'npm run mocha -- ./test/e2e'",
+    "test:mocha": "mocha  --recursive",
+    "test": "npm run test:mocha",
+    "test:unit": "mocha test/unit",
+    "test:e2e": "mocha test/e2e",
+    "test:watch": "nodemon --exec 'npm run test:mocha'",
+    "test:e2e:watch": "nodemon --exec 'npm run test:e2e'",
+    "test:unit:watch": "nodemon --exec 'npm run test:unit'",
     "start": "node server.js",
-    "start:dev": "nodemon server.js"
+    "start:watch": "nodemon server.js"
   },
   "keywords": [],
   "author": "Keli Hansen",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^4.8.0",
-    "nodemon": "^1.12.1"
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "eslint": "^4.19.1",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.17.5"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
+    "express": "^4.16.3",
     "jsonwebtoken-promisified": "^1.0.3",
-    "mongoose": "^4.12.3",
-    "morgan": "^1.9.0"
+    "mongoose": "^5.1.5",
+    "morgan": "^1.9.0",
+    "superagent": "^3.8.3"
   }
 }
