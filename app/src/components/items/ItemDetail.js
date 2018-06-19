@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getItem } from '../../services/ch-api';
+import { getItemById } from '../../services/api';
 import styles from './ItemDetail.css';
 
 export default class ItemDetail extends Component {
@@ -14,7 +14,7 @@ export default class ItemDetail extends Component {
   };
 
   componentDidMount() {
-    getItem(this.props.objectID)
+    getItemById(this.props.objectID)
       .then(item => this.setState({ item }));
   }
 
@@ -29,12 +29,12 @@ export default class ItemDetail extends Component {
 
     if(item === null) return null;
 
-    const { images, title, medium, description } = item.object;
+    const { largeImageUrl, title, medium, description } = item;
 
     return (
       <article className={styles['item-detail']}>
         <div>
-          <img src={images[0].z.url} alt={title}/>
+          <img src={largeImageUrl} alt={title}/>
           <h3>{title}</h3>
           <p><span>{medium}</span></p>
           <p>{description}</p>

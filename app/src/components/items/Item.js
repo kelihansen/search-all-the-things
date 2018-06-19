@@ -7,16 +7,16 @@ export default class Item extends Component {
   static propTypes = {
     id: PropTypes.string,
     title: PropTypes.string,
-    images: PropTypes.array
+    smallImageUrl: PropTypes.string
   };
 
   render() {
-    const { id, title, images } = this.props;
+    const { id, title, smallImageUrl } = this.props;
 
     return (
       <li>
         <Link to={`/items/${id}`}>
-          <img src={images[0].n.url} alt={title}/>
+          <img src={smallImageUrl} alt={title}/>
           <h3>{title}</h3>
         </Link>
       </li>

@@ -5,11 +5,7 @@ import './Results.css';
 export default class Results extends Component {
   static propTypes = {
     color: PropTypes.string,
-    page: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-    perPage: PropTypes.number,
+    page: PropTypes.string,
     loading: PropTypes.bool,
     totalResults: PropTypes.number,
     onPage: PropTypes.func
@@ -17,13 +13,13 @@ export default class Results extends Component {
 
   handlePage(increment) {
     const { page, onPage } = this.props;
-    onPage({ page: page + increment });
+    onPage({ page: +page + increment });
   }
 
   render() {
 
-    const { totalResults, color, page, perPage, loading } = this.props;
-    const totalPages = Math.ceil(totalResults / perPage);    
+    const { totalResults, color, page, loading } = this.props;
+    const totalPages = Math.ceil(totalResults / 10);    
     if(loading) return <section className="results-holder"></section>;
     return (
       <section className="results-holder">
@@ -31,8 +27,8 @@ export default class Results extends Component {
         {!!totalResults &&
           <div className="page-info">
             <h2>Page {page} of {totalPages}</h2>
-            <button onClick={() => this.handlePage(-1)} disabled={page === 1}>&#10094;</button>
-            <button onClick={() => this.handlePage(1)} disabled={page === totalPages}>&#10095;</button>
+            <button onClick={() => this.handlePage(-1)} disabled={page === '1'}>&#10094;</button>
+            <button onClick={() => this.handlePage(1)} disabled={page == totalPages}>&#10095;</button>
           </div>}
       </section>
     );

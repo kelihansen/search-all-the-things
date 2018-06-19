@@ -21,7 +21,7 @@ module.exports = router
                         smallImageUrl: item.images[0].n.url,
                     };
                 });
-                res.send({ items: selected, total });
+                res.send({ items: selected, totalResults: total });
             })
             .catch(next);
     })

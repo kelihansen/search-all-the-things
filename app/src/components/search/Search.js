@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
-import retrieve from '../../services/ch-api';
+import { getMatchingItems } from '../../services/api';
 import SearchInput from './SearchInput';
 import Status from './Status';
 import Results from './Results';
@@ -17,11 +17,8 @@ export default class Search extends Component {
   };
 
   state = {
-    searchTerms: {
-      color: '',
-      page: 0,
-      perPage: 0
-    },
+    color: '',
+    page: 0,
     loading: false,
     error: null,
     totalResults: null,
@@ -41,30 +38,28 @@ export default class Search extends Component {
 
   searchFromQuery = query => {
     if(!query) {
-      this.setState(prevState => ({
-        searchTerms: { ...prevState.searchTerms, color: '' },
+      this.setState({
+        color: '',
         items: [],
         totalResults: null,
-        error: null })
-      );
+        error: null
+      });
       this.props.onColor('ffffff');
       return;    
     }
-    const searchTerms = queryString.parse(query);
-    this.setState({ searchTerms });
+    const { color, page } = queryString.parse(query);
+    this.setState({ color, page });
 
     this.setState({ loading: true });
 
-    const { color, page, perPage } = searchTerms;
     this.props.onColor(color);
-    retrieve(color, page, perPage)
-      .then(({ objects, total, page, per_page: perPage }) => {
-        this.setState(prevState => ({
-          searchTerms: { ...prevState.searchTerms, page, perPage },
-          items: objects,
-          totalResults: total,
-          error: null })
-        );
+    getMatchingItems(color, page)
+      .then(({ items, totalResults }) => {
+        this.setState({
+          items,
+          totalResults,
+          error: null
+        });
       }, error => {
         this.setState({ error });
       })
@@ -72,14 +67,15 @@ export default class Search extends Component {
   };
 
   handleSearch = searchTerm => {
+    if(!searchTerm) return;
     this.setState({ error: null });
     this.props.history.push({
-      search: searchTerm ? queryString.stringify({ color: searchTerm, page: 1 }) : ''
+      search: queryString.stringify({ color: searchTerm, page: 1 })
     });
   };
 
   handlePage = ({ page }) => {
-    const { color } = this.state.searchTerms;
+    const { color } = this.state;
     this.props.history.push({ search: queryString.stringify({ color, page }) });
   };
 
@@ -88,8 +84,7 @@ export default class Search extends Component {
   }
 
   render() {
-    const { searchTerms, loading, error, totalResults, items } = this.state;
-    const { color, page, perPage } = searchTerms || '';
+    const { loading, error, totalResults, items, color, page } = this.state;
 
     return (
       <section>
@@ -98,7 +93,6 @@ export default class Search extends Component {
         {totalResults !== null && <Results
           color={color}
           page={page}
-          perPage={perPage}
           loading={loading}
           totalResults={totalResults}
           onPage={this.handlePage}/>}
