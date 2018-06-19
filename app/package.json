@@ -4,12 +4,15 @@
   "description": "Search All the Things",
   "main": "postcss.config.js",
   "scripts": {
+    "build:prod": "npm run build && npm run copy",
+    "build": "webpack --mode production",
+    "copy": "rm -rf ../server/public && cp -R ./docs ../server/public",
+    "start": "webpack-dev-server --hot --mode development --open",
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "jest",
-    "test:watch": "npm run test -- --watch",
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server --hot --mode development"
+    "jest": "jest",
+    "test": "npm run jest",
+    "test:watch": "npm run jest -- --watch"
   },
   "repository": {
     "type": "git",
