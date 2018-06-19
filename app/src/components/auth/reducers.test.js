@@ -1,6 +1,7 @@
 import {
   user,
-  USER_AUTH
+  USER_AUTH,
+  LOGOUT
 } from './reducers';
 
 describe('user reducer', () => {
@@ -13,5 +14,10 @@ describe('user reducer', () => {
     const info = { email: 'me@me.me', password:'111' };
     const state = user(null, { type: USER_AUTH, payload: info });
     expect(state).toEqual(info);
+  });
+
+  it('clears a user on logout', () => {
+    const state = user({}, { type: LOGOUT });
+    expect(state).toBe(null);
   });
 });
