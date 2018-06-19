@@ -9,8 +9,7 @@ describe('auth API', () => {
     let token = null;
 
     beforeEach(() => {
-        return request
-            .post('/api/auth/signup')
+        return request.post('/api/auth/signup')
             .send({
                 email: 'me@email.com',
                 password: '12345',
@@ -21,5 +20,13 @@ describe('auth API', () => {
 
     it('has a working signup route', () => {
         assert.ok(token);
+    });
+
+    it('has a working verify route', () => {
+        return request.get('/api/auth/verify')
+            .set('Authorization', token)
+            .then(({ body }) => {
+                assert.ok(body.verified);
+            });
     });
 });

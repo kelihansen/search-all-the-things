@@ -21,4 +21,8 @@ module.exports = router
                     return { token: sign(user), name };
                 });
         }
+    ))
+    
+    .get('/verify', createEnsureAuth(), respond(
+        () => Promise.resolve({ verified: true })
     ));
