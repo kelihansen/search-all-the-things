@@ -13,4 +13,11 @@ describe('User model', () => {
         info._id = user._id;
         assert.deepEqual(user.toJSON(), info);
     });
+
+    it('has required fields', () => {
+        const user = new User({});
+        const errors = getErrors(user.validateSync(), 2);
+        assert.strictEqual(errors.email.kind, 'required');
+        assert.strictEqual(errors.hash.kind, 'required');
+    });
 }); 
