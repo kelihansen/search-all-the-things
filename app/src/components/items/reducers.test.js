@@ -1,7 +1,8 @@
 import {
   items,
   ITEMS_LOAD,
-  currentItem
+  detailedItem,
+  ITEM_FEATURE
 } from './reducers';
 
 const item1 = {
@@ -24,9 +25,14 @@ describe('items reducer', () => {
   });
 }); 
 
-describe('current item reducer', () => {
+describe('detailed item reducer', () => {
   it('has a default value of null', () => {
-    const state = currentItem(undefined, {});
+    const state = detailedItem(undefined, {});
     expect(state).toEqual(null);
+  });
+
+  it('loads a single item', () => {
+    const state = detailedItem(null, { type: ITEM_FEATURE, payload: item1 });
+    expect(state).toEqual(item1);
   });
 }); 

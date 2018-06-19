@@ -1,4 +1,5 @@
 export const ITEMS_LOAD = 'ITEMS_LOAD';
+export const ITEM_FEATURE = 'ITEM_FEATURE';
 
 export function items(state = [], { type, payload }) {
   switch(type) {
@@ -9,8 +10,10 @@ export function items(state = [], { type, payload }) {
   }
 }
 
-export function currentItem(state = null, { type, payload }) {
+export function detailedItem(state = null, { type, payload }) {
   switch(type) {
+    case ITEM_FEATURE:
+      return payload;
     default:
       return state;
   }
