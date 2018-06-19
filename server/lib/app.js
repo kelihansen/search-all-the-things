@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 const auth = require('./routes/auth');
-const items = require('./routes/pets');
+const items = require('./routes/items');
 
 app.use('/api/auth', auth);
 app.use('/api/items', ensureAuth, items);
