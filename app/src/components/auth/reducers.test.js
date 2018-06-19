@@ -1,7 +1,8 @@
 import {
   user,
   USER_AUTH,
-  LOGOUT
+  LOGOUT,
+  getUser
 } from './reducers';
 
 describe('user reducer', () => {
@@ -20,4 +21,9 @@ describe('user reducer', () => {
     const state = user({}, { type: LOGOUT });
     expect(state).toBe(null);
   });
+});
+
+describe('selectors', () => {
+  const user = {};
+  expect(getUser({ user })).toBe(user);
 });
