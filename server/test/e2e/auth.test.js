@@ -41,6 +41,18 @@ describe('auth API', () => {
             });
     });
 
+    it('responds with a 400 on same email', () => {
+        return request
+            .post('/api/auth/signup')
+            .send({
+                email: 'me@email.com',
+                password: '12345',
+            })
+            .then(res => {
+                assert.equal(res.status, 400);
+            });
+    });
+
     it('responds with a 401 on non-existent email', () => {
         return request.post('/api/auth/signin')
             .send({

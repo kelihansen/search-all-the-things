@@ -12,7 +12,13 @@ module.exports = router
             delete body.password;
 
             return User.exists({ email })
-                .then(() => {
+                .then(exists => {
+                    if(exists) {
+                        throw {
+                            status: 400,
+                            error: 'email in use'
+                        };
+                    }
                     const user = new User(body);
                     user.generateHash(password);
                     return user.save();
