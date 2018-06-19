@@ -1,6 +1,7 @@
 import {
   items,
-  ITEMS_LOAD
+  ITEMS_LOAD,
+  currentItem
 } from './reducers';
 
 const item1 = {
@@ -20,5 +21,12 @@ describe('items reducer', () => {
   it('loads items', () => {
     const state = items([], { type: ITEMS_LOAD, payload: [item1, item2] });
     expect(state).toEqual([item1, item2]);
+  });
+}); 
+
+describe('current item reducer', () => {
+  it('has a default value of null', () => {
+    const state = currentItem(undefined, {});
+    expect(state).toEqual(null);
   });
 }); 

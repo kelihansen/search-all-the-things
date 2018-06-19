@@ -8,3 +8,10 @@ export function items(state = [], { type, payload }) {
       return state;
   }
 }
+
+export function currentItem(state = null, { type, payload }) {
+  switch(type) {
+    default:
+      return state;
+  }
+}
