@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const errorHandler = require('./util/error-handler');
-const ensureAuth = require('./auth/ensure-auth');
+// const ensureAuth = require('./auth/ensure-auth');
 require('./models/register-plugins');
 
 app.use(express.json());
