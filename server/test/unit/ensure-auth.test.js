@@ -1,5 +1,4 @@
 const { assert } = require('chai');
-require('dotenv').config({ path: './test/.env' });
 const createEnsureAuth = require('../../lib/auth/ensure-auth');
 const tokenService = require('../../lib/auth/token-service');
 
