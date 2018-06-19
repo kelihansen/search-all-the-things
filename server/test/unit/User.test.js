@@ -20,4 +20,17 @@ describe('User model', () => {
         assert.strictEqual(errors.email.kind, 'required');
         assert.strictEqual(errors.hash.kind, 'required');
     });
+
+    const email = {
+        email: 'me@email.com'
+    };
+
+    const password = '123';
+
+    it('generates a hash from password', () => {
+        const user = new User(email);
+        user.generateHash(password);
+        assert.ok(user.hash);
+        assert.notEqual(user.hash, password);
+    });
 }); 

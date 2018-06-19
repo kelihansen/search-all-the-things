@@ -13,4 +13,10 @@ const schema = new Schema({
     }
 });
 
+schema.methods = {
+    generateHash(password) {
+        this.hash = bcrypt.hashSync(password, 8);
+    }
+};
+
 module.exports = mongoose.model('User', schema);
