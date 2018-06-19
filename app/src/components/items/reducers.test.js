@@ -2,7 +2,9 @@ import {
   items,
   ITEMS_LOAD,
   detailedItem,
-  ITEM_FEATURE
+  ITEM_FEATURE,
+  getItems,
+  getDetailedItem
 } from './reducers';
 
 const item1 = {
@@ -35,4 +37,18 @@ describe('detailed item reducer', () => {
     const state = detailedItem(null, { type: ITEM_FEATURE, payload: item1 });
     expect(state).toEqual(item1);
   });
-}); 
+});
+
+describe('selectors', () => {
+  it('gets the current array of items', () => {
+    const items = [item1, item2];
+    const got = getItems({ items });
+    expect(got).toEqual(items);
+  });
+  
+  it('gets the currently featured item', () => {
+    const detailedItem = item1;
+    const got = getDetailedItem({ detailedItem });
+    expect(got).toEqual(detailedItem);
+  });
+});
