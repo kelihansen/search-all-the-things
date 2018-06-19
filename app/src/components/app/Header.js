@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './Header.css';
+import { getCurrentColor } from './reducers';
 
-export default class Header extends Component {
+class Header extends Component {
   static propTypes = {
     color: PropTypes.string
   };
@@ -24,3 +26,9 @@ export default class Header extends Component {
     );
   }
 }
+
+export default connect(
+  state => ({
+    color: getCurrentColor(state)
+  })
+)(Header);
