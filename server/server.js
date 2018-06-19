@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable-next-line no-console */
 const http = require('http');
 const app = require('./lib/app');
 const connect = require('./lib/util/connect');
