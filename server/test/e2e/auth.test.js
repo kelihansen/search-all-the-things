@@ -63,4 +63,15 @@ describe('auth API', () => {
                 assert.equal(res.status, 401);
             });
     });
+
+    it('responds with a 400 if email or password is missing', () => {
+        return request
+            .post('/api/auth/signin')
+            .send({
+                email: 'me@me.com'
+            })
+            .then(res => {
+                assert.equal(res.status, 400);
+            });
+    });
 });

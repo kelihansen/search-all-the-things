@@ -4,9 +4,20 @@ const User = require('../models/User');
 const { sign } = require('../auth/token-service');
 const createEnsureAuth = require('../auth/ensure-auth');
 
+const hasEmailAndPassword = ({ body }, res, next) => {
+    const { email, password } = body;
+    if(!email || !password) {
+        throw {
+            status: 400,
+            error: 'email and password required'
+        };
+    }
+    next();
+};
+
 module.exports = router
 
-    .post('/signup', respond(
+    .post('/signup', hasEmailAndPassword, respond(
         ({ body }) => {
             const { email, password, name } = body;
             delete body.password;
@@ -33,7 +44,7 @@ module.exports = router
         () => Promise.resolve({ verified: true })
     ))
     
-    .post('/signin', respond(
+    .post('/signin', hasEmailAndPassword, respond(
         ({ body }) => {
             const { email, password } = body;
             delete body.password;
