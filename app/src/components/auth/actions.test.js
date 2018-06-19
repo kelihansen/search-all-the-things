@@ -3,8 +3,8 @@ jest.mock('../../services/api', () => ({
   postSignin: jest.fn()
 }));
 
-import { signup, signin } from './actions';
-import { USER_AUTH } from './reducers';
+import { signup, signin, logout } from './actions';
+import { USER_AUTH, LOGOUT } from './reducers';
 import { postSignup, postSignin } from '../../services/api';
 
 describe('auth action creators', () => {
@@ -24,4 +24,9 @@ describe('auth action creators', () => {
 
   testAuth('signup', postSignup, signup);
   testAuth('signin', postSignin, signin);
+
+  it('creates a logout action', () => {
+    const { type } = logout();
+    expect(type).toBe(LOGOUT);
+  });
 });

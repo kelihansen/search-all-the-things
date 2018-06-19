@@ -11,3 +11,4 @@ const makeAuth = api => {
 
 export const signup = makeAuth(postSignup);
 export const signin = makeAuth(postSignin);
+export const logout = () => ({ type: LOGOUT });
