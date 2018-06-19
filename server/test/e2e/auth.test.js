@@ -29,4 +29,15 @@ describe('auth API', () => {
                 assert.ok(body.verified);
             });
     });
+
+    it('has a working signin route', () => {
+        return request.post('/api/auth/signin')
+            .send({
+                email: 'me@email.com',
+                password: '12345',
+            })
+            .then(({ body }) => {
+                assert.ok(body.token);
+            });
+    });
 });
