@@ -1,6 +1,6 @@
 import { USER_AUTH, LOGOUT } from './reducers';
 
-import { postSignup } from '../../services/api';
+import { postSignup, postSignin } from '../../services/api';
 
 const makeAuth = api => {
   return credentials => ({
@@ -10,3 +10,4 @@ const makeAuth = api => {
 };
 
 export const signup = makeAuth(postSignup);
+export const signin = makeAuth(postSignin);

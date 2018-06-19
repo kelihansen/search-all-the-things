@@ -1,10 +1,11 @@
 jest.mock('../../services/api', () => ({
-  postSignup: jest.fn()
+  postSignup: jest.fn(),
+  postSignin: jest.fn()
 }));
 
-import { signup } from './actions';
+import { signup, signin } from './actions';
 import { USER_AUTH } from './reducers';
-import { postSignup } from '../../services/api';
+import { postSignup, postSignin } from '../../services/api';
 
 describe('auth action creators', () => {
   function testAuth(actionType, mockService, actionCreator) {
@@ -22,4 +23,5 @@ describe('auth action creators', () => {
   }
 
   testAuth('signup', postSignup, signup);
+  testAuth('signin', postSignin, signin);
 });
