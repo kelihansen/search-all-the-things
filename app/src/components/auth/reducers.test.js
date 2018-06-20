@@ -4,7 +4,8 @@ import {
   LOGOUT,
   getUser,
   checkedAuth,
-  CHECKED_AUTH
+  CHECKED_AUTH,
+  getCheckedAuth
 } from './reducers';
 
 describe('user reducer', () => {
@@ -38,6 +39,13 @@ describe('checked auth reducer', () => {
 });
 
 describe('selectors', () => {
-  const user = {};
-  expect(getUser({ user })).toBe(user);
+  it('gets the current user object', () => {
+    const user = {};
+    expect(getUser({ user })).toBe(user);
+  });
+
+  it('gets checkedAuth status', () => {
+    const auth = true;
+    expect(getCheckedAuth({ checkedAuth: auth })).toBe(true);
+  });
 });
