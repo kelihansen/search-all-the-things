@@ -1,11 +1,18 @@
 jest.mock('../../services/api', () => ({
   postSignup: jest.fn(),
-  postSignin: jest.fn()
+  postSignin: jest.fn(),
+  getUserVerified: jest.fn()
 }));
 
-import { signup, signin, logout } from './actions';
-import { USER_AUTH, LOGOUT } from './reducers';
-import { postSignup, postSignin } from '../../services/api';
+jest.mock('../../services/request', () => ({
+  getStoredUser: jest.fn(),
+  clearStoredUser: jest.fn()
+}));
+
+import { signup, signin, logout, attemptUserLoad } from './actions';
+import { USER_AUTH, LOGOUT, CHECKED_AUTH } from './reducers';
+import { postSignup, postSignin, getUserVerified } from '../../services/api';
+import { getStoredUser, clearStoredUser } from '../../services/request';
 
 describe('auth action creators', () => {
   function testAuth(actionType, mockService, actionCreator) {
@@ -28,5 +35,27 @@ describe('auth action creators', () => {
   it('creates a logout action', () => {
     const { type } = logout();
     expect(type).toBe(LOGOUT);
+  });
+
+  it('creates an action that verifies and loads a user, if possible', async() => {
+    const user = { token: '123' };
+    getStoredUser.mockReturnValueOnce(user);
+    const promise = Promise.resolve({ verified: true });
+    getUserVerified.mockReturnValueOnce(promise);
+
+    const thunk = attemptUserLoad();
+    const dispatch = jest.fn();
+    thunk(dispatch);
+
+    await promise;
+    expect(getUserVerified.mock.calls[0][0]).toBe('123');
+    expect(dispatch.mock.calls.length).toBe(2);
+    expect(dispatch.mock.calls[0][0]).toEqual({ 
+      type: USER_AUTH,
+      payload: user
+    });
+    expect(dispatch.mock.calls[1][0]).toEqual({ 
+      type: CHECKED_AUTH
+    });
   });
 });
