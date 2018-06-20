@@ -37,26 +37,27 @@ describe('auth action creators', () => {
     expect(type).toBe(LOGOUT);
   });
 
-  it('creates an action that verifies and loads a user, if possible', async() => {
-    const user = { token: '123' };
-    getStoredUser.mockReturnValueOnce(user);
-    const verified = Promise.resolve({ verified: true });
-    getUserVerified.mockReturnValueOnce(verified);
-
+  it('creates an action that verifies and loads a user, if possible', () => {
     const thunk = attemptUserLoad();
     const dispatch = jest.fn();
-    thunk(dispatch);
+    
+    const user = { token: '123' };
+    getStoredUser.mockReturnValueOnce(user);
+    const verified = Promise.resolve();
+    getUserVerified.mockReturnValueOnce(verified);
 
-    await verified;
-    expect(getUserVerified.mock.calls[0][0]).toBe('123');
-    expect(dispatch.mock.calls.length).toBe(2);
-    expect(clearStoredUser.mock.calls.length).toBe(0);
-    expect(dispatch.mock.calls[0][0]).toEqual({ 
-      type: USER_AUTH,
-      payload: user
-    });
-    expect(dispatch.mock.calls[1][0]).toEqual({ 
-      type: CHECKED_AUTH
-    });
+    thunk(dispatch)
+      .then(() => {
+        expect(getUserVerified.mock.calls[0][0]).toBe('123');
+        expect(dispatch.mock.calls.length).toBe(2);
+        expect(clearStoredUser.mock.calls.length).toBe(0);
+        expect(dispatch.mock.calls[0][0]).toEqual({ 
+          type: USER_AUTH,
+          payload: user
+        });
+        expect(dispatch.mock.calls[1][0]).toEqual({ 
+          type: CHECKED_AUTH
+        });
+      });
   });
 });
