@@ -57,7 +57,7 @@ module.exports = router
                             error: 'invalid email or password'
                         };
                     }
-                    return { token: sign(user) };
+                    return { token: sign(user), name: user.name };
                 });
         }
     ));
