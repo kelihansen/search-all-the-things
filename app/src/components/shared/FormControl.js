@@ -5,7 +5,7 @@ export default class FormControl extends PureComponent {
   static propTypes = {
     label: PropTypes.string,
     children: PropTypes.element
-  }
+  };
 
   render() {
     const { label, children } = this.props;
