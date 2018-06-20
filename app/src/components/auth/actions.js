@@ -23,7 +23,7 @@ export const attemptUserLoad = () => {
       return dispatch(authChecked());
     }
 
-    getUserVerified(user.token)
+    return getUserVerified(user.token)
       .then(() => dispatch({
         type: USER_AUTH,
         payload: user
