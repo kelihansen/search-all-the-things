@@ -1,3 +1,20 @@
-import { ERROR_CLEAR } from './reducers';
+import { getMatchingItems, getItemById } from '../../services/api';
 
-export const clearError = () => ({ type: ERROR_CLEAR });
+import {
+  RESULTS_LOAD,
+  ITEM_FEATURE
+} from './reducers';
+
+export function loadResults(color, page) {
+  return {
+    type: RESULTS_LOAD,
+    payload: getMatchingItems(color, page)
+  };
+}
+
+export function featureItem(id) {
+  return {
+    type: ITEM_FEATURE,
+    payload: getItemById(id)
+  };
+}

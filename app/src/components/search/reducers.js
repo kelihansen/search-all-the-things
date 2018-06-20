@@ -1,28 +1,32 @@
-export const LOAD_START = 'LOAD_START';
-export const LOAD_END = 'LOAD_END';
-export const ERROR = 'ERROR';
-export const ERROR_CLEAR = 'ERROR_CLEAR';
+export const RESULTS_LOAD = 'RESULTS_LOAD';
+export const ITEM_FEATURE = 'ITEM_FEATURE';
 
-export const getLoading = state => state.error;
-export const getError = state => state.loading;
+export const getItems = state => state.items;
+export const getDetailedItem = state => state.detailedItem;
+export const getTotalResults = state => state.results;
 
-export function loading(state = false, { type }) {
+export function items(state = [], { type, payload }) {
   switch(type) {
-    case LOAD_START:
-      return true;
-    case LOAD_END:
-      return false;
+    case RESULTS_LOAD:
+      return payload.items;
     default:
       return state;
   }
 }
 
-export function error(state = null, { type, payload }) {
+export function detailedItem(state = null, { type, payload }) {
   switch(type) {
-    case ERROR:
+    case ITEM_FEATURE:
       return payload;
-    case ERROR_CLEAR:
-      return null;
+    default:
+      return state;
+  }
+}
+
+export function results(state = null, { type, payload }) {
+  switch(type) {
+    case RESULTS_LOAD:
+      return payload.totalResults;
     default:
       return state;
   }
