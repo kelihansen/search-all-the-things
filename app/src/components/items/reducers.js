@@ -3,6 +3,7 @@ export const ITEM_FEATURE = 'ITEM_FEATURE';
 
 export const getItems = state => state.items;
 export const getDetailedItem = state => state.detailedItem;
+export const getTotalResults = state => state.results;
 
 export function items(state = [], { type, payload }) {
   switch(type) {

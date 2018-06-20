@@ -5,7 +5,8 @@ import {
   ITEM_FEATURE,
   getItems,
   getDetailedItem,
-  results
+  results,
+  getTotalResults
 } from './reducers';
 
 const item1 = {
@@ -64,5 +65,11 @@ describe('selectors', () => {
     const detailedItem = item1;
     const got = getDetailedItem({ detailedItem });
     expect(got).toEqual(detailedItem);
+  });
+  
+  it('gets the total results of the current search', () => {
+    const results = 100;
+    const got = getTotalResults({ results });
+    expect(got).toEqual(results);
   });
 });
