@@ -2,7 +2,8 @@ import {
   user,
   USER_AUTH,
   LOGOUT,
-  getUser
+  getUser,
+  checkedAuth
 } from './reducers';
 
 describe('user reducer', () => {
@@ -20,6 +21,13 @@ describe('user reducer', () => {
   it('clears a user on logout', () => {
     const state = user({}, { type: LOGOUT });
     expect(state).toBe(null);
+  });
+});
+
+describe('checked auth reducer', () => {
+  it('has a default value of false', () => {
+    const state = checkedAuth(undefined, {});
+    expect(state).toBe(false);
   });
 });
 
