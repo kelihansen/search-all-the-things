@@ -10,7 +10,7 @@ export const getItemById = id => get(`${ITEMS_URL}/${id}`);
 export const postSignin = credentials => post(`${AUTH_URL}/signin`, credentials);
 export const postSignup = credentials => post(`${AUTH_URL}/signup`, credentials);
 
-export const getUserVerification = token => get(`${AUTH_URL}/verify`, {
+export const getUserVerified = token => get(`${AUTH_URL}/verify`, {
   headers: {
     Authorization: token
   }
