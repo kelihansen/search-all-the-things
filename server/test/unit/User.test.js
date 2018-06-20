@@ -5,6 +5,7 @@ const { getErrors } = require('./helpers');
 describe('User model', () => {
     it('is a good, valid model', () => {
         const info = {
+            name: 'Keli',
             email: 'me@email.com',
             hash: 'sosecret'
         };
@@ -16,9 +17,10 @@ describe('User model', () => {
 
     it('has required fields', () => {
         const user = new User({});
-        const errors = getErrors(user.validateSync(), 2);
+        const errors = getErrors(user.validateSync(), 3);
         assert.strictEqual(errors.email.kind, 'required');
         assert.strictEqual(errors.hash.kind, 'required');
+        assert.strictEqual(errors.name.kind, 'required');
     });
 
     const email = {

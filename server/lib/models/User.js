@@ -2,15 +2,15 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const bcrypt = require('bcryptjs');
 
+const RequiredString = {
+    type: String,
+    required: true
+};
+
 const schema = new Schema({
-    email: {
-        type: String,
-        required: true
-    },
-    hash: {
-        type: String,
-        required: true
-    }
+    name: RequiredString,
+    email: RequiredString,
+    hash: RequiredString
 });
 
 schema.methods = {
