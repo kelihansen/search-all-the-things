@@ -3,7 +3,8 @@ import {
   USER_AUTH,
   LOGOUT,
   getUser,
-  checkedAuth
+  checkedAuth,
+  CHECKED_AUTH
 } from './reducers';
 
 describe('user reducer', () => {
@@ -28,6 +29,11 @@ describe('checked auth reducer', () => {
   it('has a default value of false', () => {
     const state = checkedAuth(undefined, {});
     expect(state).toBe(false);
+  });
+
+  it('switches to true', () => {
+    const state = checkedAuth(false, { type: CHECKED_AUTH });
+    expect(state).toBe(true);
   });
 });
 

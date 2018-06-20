@@ -17,7 +17,8 @@ export function user(state = null, { type, payload }) {
 
 export function checkedAuth(state = false, { type, payload }) {
   switch(type) {
-
+    case CHECKED_AUTH:
+      return true;
     default:
       return state;
   }
