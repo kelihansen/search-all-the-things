@@ -21,3 +21,12 @@ export function detailedItem(state = null, { type, payload }) {
       return state;
   }
 }
+
+export function results(state = null, { type, payload }) {
+  switch(type) {
+    case RESULTS_LOAD:
+      return payload.totalResults;
+    default:
+      return state;
+  }
+}

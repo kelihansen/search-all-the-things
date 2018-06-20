@@ -4,7 +4,8 @@ import {
   detailedItem,
   ITEM_FEATURE,
   getItems,
-  getDetailedItem
+  getDetailedItem,
+  results
 } from './reducers';
 
 const item1 = {
@@ -36,6 +37,19 @@ describe('detailed item reducer', () => {
   it('loads a single item', () => {
     const state = detailedItem(null, { type: ITEM_FEATURE, payload: item1 });
     expect(state).toEqual(item1);
+  });
+});
+
+describe('total results reducer', () => {
+  it('has a default value of null', () => {
+    const state = results(undefined, {});
+    expect(state).toEqual(null);
+  });
+
+  it('updates when search results are loaded', () => {
+    const totalResults = 100;
+    const state = results(null, { type: RESULTS_LOAD, payload: { totalResults } });
+    expect(state).toEqual(totalResults);
   });
 });
 
