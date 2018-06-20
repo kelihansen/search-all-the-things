@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import FormControl from '../share/FormControl';
+import FormControl from '../shared/FormControl';
 
 export default class Credentials extends PureComponent {
   static propTypes = {
@@ -45,7 +45,7 @@ export default class Credentials extends PureComponent {
         </FormControl>
         
         <FormControl>
-          <button>{action}</button>
+          <button type="submit">{action}</button>
         </FormControl>   
       </form>
     );
