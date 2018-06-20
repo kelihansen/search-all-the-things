@@ -4,11 +4,11 @@ jest.mock('../../services/api', () => ({
 }));
 
 import {
-  ITEMS_LOAD,
+  RESULTS_LOAD,
   ITEM_FEATURE
 } from './reducers';
 
-import { loadItems, featureItem } from './actions';
+import { loadResults, featureItem } from './actions';
 
 import { getMatchingItems, getItemById } from '../../services/api';
 
@@ -19,8 +19,8 @@ describe('item action creators', () => {
 
     const color = '123456';
     const page = '1';
-    const { type, payload } = loadItems(color, page);
-    expect(type).toBe(ITEMS_LOAD);
+    const { type, payload } = loadResults(color, page);
+    expect(type).toBe(RESULTS_LOAD);
     expect(getMatchingItems.mock.calls.length).toBe(1);
     expect(getMatchingItems.mock.calls[0][0]).toBe(color);
     expect(getMatchingItems.mock.calls[0][1]).toBe(page);

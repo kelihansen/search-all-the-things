@@ -1,13 +1,13 @@
 import { getMatchingItems, getItemById } from '../../services/api';
 
 import {
-  ITEMS_LOAD,
+  RESULTS_LOAD,
   ITEM_FEATURE
 } from './reducers';
 
-export function loadItems(color, page) {
+export function loadResults(color, page) {
   return {
-    type: ITEMS_LOAD,
+    type: RESULTS_LOAD,
     payload: getMatchingItems(color, page)
   };
 }

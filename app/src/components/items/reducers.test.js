@@ -1,6 +1,6 @@
 import {
   items,
-  ITEMS_LOAD,
+  RESULTS_LOAD,
   detailedItem,
   ITEM_FEATURE,
   getItems,
@@ -22,7 +22,7 @@ describe('items reducer', () => {
   });
 
   it('loads items', () => {
-    const state = items([], { type: ITEMS_LOAD, payload: [item1, item2] });
+    const state = items([], { type: RESULTS_LOAD, payload: { items: [item1, item2] } });
     expect(state).toEqual([item1, item2]);
   });
 }); 
