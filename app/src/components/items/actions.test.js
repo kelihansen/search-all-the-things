@@ -26,4 +26,16 @@ describe('item action creators', () => {
     expect(getMatchingItems.mock.calls[0][1]).toBe(page);
     expect(payload).toBe(promise);
   });
+
+  it('creates an feature action for a detailed item', () => {
+    const promise = Promise.resolve();
+    getItemById.mockReturnValueOnce(promise);
+
+    const id = '123456';
+    const { type, payload } = featureItem(id);
+    expect(type).toBe(ITEM_FEATURE);
+    expect(getItemById.mock.calls.length).toBe(1);
+    expect(getItemById.mock.calls[0][0]).toBe(id);
+    expect(payload).toBe(promise);
+  });
 });

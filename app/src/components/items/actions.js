@@ -11,3 +11,10 @@ export function loadItems(color, page) {
     payload: getMatchingItems(color, page)
   };
 }
+
+export function featureItem(id) {
+  return {
+    type: ITEM_FEATURE,
+    payload: getItemById(id)
+  };
+}
