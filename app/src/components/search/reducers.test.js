@@ -8,7 +8,8 @@ import {
   results,
   getTotalResults,
   page,
-  PAGE_UPDATE
+  PAGE_UPDATE,
+  getPage
 } from './reducers';
 
 const item1 = {
@@ -86,5 +87,11 @@ describe('selectors', () => {
     const results = 100;
     const got = getTotalResults({ results });
     expect(got).toEqual(results);
+  });
+  
+  it('gets the page number of the current search', () => {
+    const page = 5;
+    const got = getPage({ page });
+    expect(got).toEqual(page);
   });
 });

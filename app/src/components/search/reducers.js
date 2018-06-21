@@ -5,6 +5,7 @@ export const PAGE_UPDATE = 'PAGE_UPDATE';
 export const getItems = state => state.items;
 export const getDetailedItem = state => state.detailedItem;
 export const getTotalResults = state => state.results;
+export const getPage = state => state.page;
 
 export function items(state = [], { type, payload }) {
   switch(type) {
