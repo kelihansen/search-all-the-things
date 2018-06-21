@@ -34,8 +34,8 @@ class App extends PureComponent {
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route path="/auth" component={Auth}/>
-              <Route path="/search" component={Search}/>
-              <Route path="/items/:id" render={({ match, history }) => {
+              <PrivateRoute path="/search" component={Search}/>
+              <PrivateRoute path="/items/:id" render={({ match, history }) => {
                 return <ItemDetail objectID={match.params.id} history={history}/>;
               }}/>
               <PrivateRoute path="/saved" component={Saved}/>
