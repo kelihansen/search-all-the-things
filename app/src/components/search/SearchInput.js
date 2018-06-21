@@ -1,45 +1,47 @@
-/* eslint react/no-deprecated:off */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import queryString from 'query-string';
 import { ChromePicker } from 'react-color';
+import { getCurrentColor } from '../app/reducers';
+import { updateColor } from '../app/actions';
+import { updatePage } from './actions';
 import styles from './SearchInput.css';
 
-export default class SearchInput extends Component {
+class SearchInput extends Component {
   static propTypes = {
-    searchTerm: PropTypes.string,
-    onSearch: PropTypes.func.isRequired
+    history: PropTypes.object.isRequired,    
+    color: PropTypes.string,
+    updateColor: PropTypes.func.isRequired,
+    updatePage: PropTypes.func.isRequired
   };
-
-  state = {
-    current: this.props.searchTerm ? '#' + this.props.searchTerm : '#3f8177'
-  };
-
-  componentWillReceiveProps({ searchTerm }) {
-    if(searchTerm !== this.state.current) {
-      this.setState({ current: searchTerm ? '#' + searchTerm : '#3f8177' });
-    }
-  }
 
   handleChangeComplete = ({ hex }) => {
-    this.setState({ current: hex }, this.callSearch);
+    const { history, updateColor, updatePage } = this.props;
+    const colorMinusHash = hex.slice(1);
+    updateColor(colorMinusHash);
+    updatePage('1');
+    history.push({ search: queryString.stringify({ color: colorMinusHash, page: 1 }) });
   };
 
-  callSearch() {
-    const { current } = this.state;
-    const colorMinusHash = current.slice(1);
-    this.props.onSearch(colorMinusHash);
-  }
-
   render() {
-    const { current } = this.state;
+    const { color } = this.props;
 
     return (
       <section className={styles.search}>
         <label>
         Select a color to search by:
-          <ChromePicker color={current} disableAlpha={true} onChangeComplete={ this.handleChangeComplete }/>
+          <ChromePicker color={color || '#3f8177'} disableAlpha={true} onChangeComplete={this.handleChangeComplete}/>
         </label>
       </section>
     );
   }
 }
+
+export default withRouter(connect(
+  state => ({
+    color: getCurrentColor(state),
+  }),
+  { updateColor, updatePage }
+)(SearchInput));
