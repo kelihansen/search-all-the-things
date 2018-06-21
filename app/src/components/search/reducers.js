@@ -31,3 +31,11 @@ export function results(state = null, { type, payload }) {
       return state;
   }
 }
+
+export function page(state = null, { type, payload }) {
+  switch(type) {
+
+    default:
+      return state;
+  }
+}

@@ -6,7 +6,8 @@ import {
   getItems,
   getDetailedItem,
   results,
-  getTotalResults
+  getTotalResults,
+  page
 } from './reducers';
 
 const item1 = {
@@ -52,6 +53,14 @@ describe('total results reducer', () => {
     const state = results(null, { type: RESULTS_LOAD, payload: { totalResults } });
     expect(state).toEqual(totalResults);
   });
+});
+
+describe('page reducer', () => {
+  it('has a default value of null', () => {
+    const state = page(undefined, {});
+    expect(state).toEqual(null);
+  });
+
 });
 
 describe('selectors', () => {
