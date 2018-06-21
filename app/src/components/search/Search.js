@@ -8,7 +8,8 @@ import Results from './Results';
 import Items from '../items/Items';
 import { getCurrentColor } from '../app/reducers';
 import { getPage } from './reducers';
-import { loadResults } from './actions';
+import { loadResults, updatePage } from './actions';
+import { updateColor } from '../app/actions';
 
 class Search extends Component {
   static propTypes = {
@@ -16,27 +17,33 @@ class Search extends Component {
     location: PropTypes.object.isRequired,
     color: PropTypes.string,
     page: PropTypes.string,
-    loadResults: PropTypes.func.isRequired
+    loadResults: PropTypes.func.isRequired,
+    updateColor: PropTypes.func.isRequired,
+    updatePage: PropTypes.func.isRequired
   };
 
   componentDidMount() {
-    const { location, color, page } = this.props;
-    const directQuery = location.search ? queryString.parse(location.search) : null;
-    const storedQuery = color && page ? { color, page } : null;
-    const queryObject = directQuery || storedQuery;
-    if(queryObject) this.searchFromQuery(queryObject);
+    const { history, location, color, page } = this.props;
+
+    if(location.search) this.searchFromQuery(location.search);
+    else if(color && page) history.replace({ search: queryString.stringify({ color, page }) });
   }
 
   componentDidUpdate({ location }) {
     const queryPreUpdate = location.search;
     const queryPostUpdate = this.props.location.search;
     if(queryPreUpdate === queryPostUpdate) return;
-    this.searchFromQuery(queryString.parse(queryPostUpdate));
+    this.searchFromQuery(this.props.location.search);
   }
 
-  searchFromQuery = queryObject => {
-    const { color, page } = queryObject;
-    this.props.loadResults(color, page);
+  searchFromQuery = query => {
+    const { color, page } = queryString.parse(query);
+    if(color && page) {
+      const { updateColor, updatePage, loadResults } = this.props;
+      updateColor(color);
+      updatePage(page);
+      loadResults(color, page);
+    }
   };
 
   render() {
@@ -56,5 +63,5 @@ export default connect(
     color: getCurrentColor(state),
     page: getPage(state)
   }),
-  { loadResults }
+  { loadResults, updateColor, updatePage }
 )(Search);
