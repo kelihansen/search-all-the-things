@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import promiseMiddleware from './promise-middleware';
 import { loading, error, color } from '../components/app/reducers';
 import { user, checkedAuth } from '../components/auth/reducers';
-import { items, detailedItem, results } from '../components/search/reducers';
+import { items, detailedItem, results, page } from '../components/search/reducers';
 
 const rootReducer = combineReducers({
   loading,
@@ -13,7 +13,8 @@ const rootReducer = combineReducers({
   color,
   items,
   detailedItem,
-  results
+  results,
+  page
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
