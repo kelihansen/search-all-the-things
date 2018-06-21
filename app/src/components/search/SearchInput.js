@@ -18,11 +18,8 @@ class SearchInput extends Component {
   };
 
   handleChangeComplete = ({ hex }) => {
-    const { history, updateColor, updatePage } = this.props;
     const colorMinusHash = hex.slice(1);
-    updateColor(colorMinusHash);
-    updatePage('1');
-    history.push({ search: queryString.stringify({ color: colorMinusHash, page: 1 }) });
+    this.props.history.push({ search: queryString.stringify({ color: colorMinusHash, page: 1 }) });
   };
 
   render() {

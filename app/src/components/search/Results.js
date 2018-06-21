@@ -18,9 +18,8 @@ class Results extends Component {
   };
 
   handlePage(increment) {
-    const { history, color, page, updatePage } = this.props;
+    const { history, color, page } = this.props;
     const newPage = +page + increment;
-    updatePage('' + newPage);
     history.push({ search: queryString.stringify({ color, page: newPage }) });
   }
 
@@ -30,7 +29,7 @@ class Results extends Component {
     return (
       <section className="results-holder">
         {results !== null && <h2 className="results-info">{results} results found for color #{color}</h2>}
-        {results &&
+        {!!results &&
           <div className="page-info">
             <h2>Page {page} of {totalPages}</h2>
             <button onClick={() => this.handlePage(-1)} disabled={page === '1'}>&#10094;</button>
