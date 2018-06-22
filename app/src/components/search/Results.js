@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 import queryString from 'query-string';
-import { getCurrentColor } from '../app/reducers';
-import { getPage, getTotalResults } from './reducers';
 import './Results.css';
 
-class Results extends Component {
+export default class Results extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
     results: PropTypes.number,
@@ -37,11 +33,3 @@ class Results extends Component {
     );
   }
 }
-
-export default withRouter(connect(
-  state => ({
-    color: getCurrentColor(state),
-    page: getPage(state),
-    results: getTotalResults(state)
-  })
-)(Results));

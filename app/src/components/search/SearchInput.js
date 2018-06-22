@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 import queryString from 'query-string';
 import { ChromePicker } from 'react-color';
-import { getCurrentColor } from '../app/reducers';
 import styles from './SearchInput.css';
 
-class SearchInput extends Component {
+export default class SearchInput extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,    
     color: PropTypes.string,
@@ -31,9 +28,3 @@ class SearchInput extends Component {
     );
   }
 }
-
-export default withRouter(connect(
-  state => ({
-    color: getCurrentColor(state),
-  })
-)(SearchInput));

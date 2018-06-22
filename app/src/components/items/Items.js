@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import Item from './Item';
-import { getItems } from '../search/reducers';
 import './Items.css';
 
-class Items extends Component {
+export default class Items extends Component {
   static propTypes = {
     items: PropTypes.array
   };
@@ -20,7 +18,3 @@ class Items extends Component {
     );
   }
 }
-
-export default connect(
-  state => ({ items: getItems(state) })
-)(Items);
