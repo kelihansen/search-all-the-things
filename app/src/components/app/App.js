@@ -28,7 +28,7 @@ class App extends PureComponent {
     return (
       <Router>
         <div>
-          <Header/>
+          <Route component={Header}/>
           <main>
             {checkedAuth &&
             <Switch>
