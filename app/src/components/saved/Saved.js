@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import styles from './Saved.css';
 
 class Saved extends PureComponent {
   render() {
     return (
-      <div>
+      <div className={styles.saved}>
         <h3>Coming soon!</h3>
       </div>
     );
