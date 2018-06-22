@@ -4,6 +4,8 @@ export const ERROR = 'ERROR';
 export const ERROR_CLEAR = 'ERROR_CLEAR';
 export const COLOR_UPDATE = 'COLOR_UPDATE';
 
+import { LOGOUT } from '../auth/reducers';
+
 export const getLoading = state => state.error;
 export const getError = state => state.loading;
 export const getCurrentColor = state => state.color;
@@ -34,6 +36,8 @@ export function color(state = null, { type, payload }) {
   switch(type) {
     case COLOR_UPDATE:
       return payload;
+    case LOGOUT:
+      return null;
     default:
       return state;
   }

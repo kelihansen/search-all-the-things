@@ -11,6 +11,8 @@ import {
   getPage
 } from './reducers';
 
+import { LOGOUT } from '../auth/reducers';
+
 const item1 = {
   title: 'fancy thing'
 };
@@ -29,6 +31,11 @@ describe('items reducer', () => {
     const state = items([], { type: RESULTS_LOAD, payload: { items: [item1, item2] } });
     expect(state).toEqual([item1, item2]);
   });
+
+  it('clears items on logout', () => {
+    const state = items([item1, item2], { type: LOGOUT });
+    expect(state).toEqual([]);
+  });
 }); 
 
 describe('detailed item reducer', () => {
@@ -40,6 +47,11 @@ describe('detailed item reducer', () => {
   it('loads a single item', () => {
     const state = detailedItem(null, { type: ITEM_FEATURE, payload: item1 });
     expect(state).toEqual(item1);
+  });
+
+  it('clears the detailed item on logout', () => {
+    const state = detailedItem(item1, { type: LOGOUT });
+    expect(state).toBe(null);
   });
 });
 
@@ -54,6 +66,11 @@ describe('total results reducer', () => {
     const state = results(null, { type: RESULTS_LOAD, payload: { totalResults } });
     expect(state).toEqual(totalResults);
   });
+
+  it('clears results on logout', () => {
+    const state = results(1, { type: LOGOUT });
+    expect(state).toBe(null);
+  });
 });
 
 describe('page reducer', () => {
@@ -66,6 +83,11 @@ describe('page reducer', () => {
     const pageNumber = 2;
     const state = page(null, { type: RESULTS_LOAD, payload: { page: pageNumber } });
     expect(state).toEqual(pageNumber);
+  });
+
+  it('clears the page on logout', () => {
+    const state = page(10, { type: LOGOUT });
+    expect(state).toBe(null);
   });
 });
 
