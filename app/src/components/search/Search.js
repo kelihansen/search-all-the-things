@@ -6,7 +6,7 @@ import SearchInput from './SearchInput';
 import Status from './Status';
 import Results from './Results';
 import Items from '../items/Items';
-import { getCurrentColor } from '../app/reducers';
+import { getCurrentColor, getLoading, getError } from '../app/reducers';
 import { updateColor } from '../app/actions';
 import { getPage, getItems, getTotalResults } from './reducers';
 import { loadResults } from './actions';
@@ -15,6 +15,8 @@ class Search extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
+    loading: PropTypes.bool,
+    error: PropTypes.object,
     color: PropTypes.string,
     page: PropTypes.string,
     results: PropTypes.number,
@@ -47,12 +49,12 @@ class Search extends Component {
   };
 
   render() {
-    const { color, results, page, items, history } = this.props;
+    const { color, results, page, items, history, loading, error } = this.props;
 
     return (
       <section>
         <SearchInput color={color} history={history}/>
-        <Status/>
+        <Status loading={loading} error={error}/>
         <Results color={color} history={history} results={results} page={page}/>
         <Items items={items}/>
       </section>
@@ -62,6 +64,8 @@ class Search extends Component {
 
 export default connect(
   state => ({
+    loading: getLoading(state),
+    error: getError(state),
     color: getCurrentColor(state),
     page: getPage(state),
     results: getTotalResults(state),
