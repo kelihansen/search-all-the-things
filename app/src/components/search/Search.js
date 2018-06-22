@@ -8,7 +8,7 @@ import Results from './Results';
 import Items from '../items/Items';
 import { getCurrentColor } from '../app/reducers';
 import { getPage } from './reducers';
-import { loadResults, updatePage } from './actions';
+import { loadResults } from './actions';
 import { updateColor } from '../app/actions';
 
 class Search extends Component {
@@ -19,7 +19,6 @@ class Search extends Component {
     page: PropTypes.string,
     loadResults: PropTypes.func.isRequired,
     updateColor: PropTypes.func.isRequired,
-    updatePage: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -36,12 +35,11 @@ class Search extends Component {
     this.searchFromQuery(this.props.location.search);
   }
 
-  searchFromQuery = query => {
-    const { color, page } = queryString.parse(query);
+  searchFromQuery = search => {
+    const { color, page } = queryString.parse(search);
     if(color && page) {
-      const { updateColor, updatePage, loadResults } = this.props;
+      const { updateColor, loadResults } = this.props;
       updateColor(color);
-      updatePage(page);
       loadResults(color, page);
     }
   };
@@ -63,5 +61,5 @@ export default connect(
     color: getCurrentColor(state),
     page: getPage(state)
   }),
-  { loadResults, updateColor, updatePage }
+  { loadResults, updateColor }
 )(Search);

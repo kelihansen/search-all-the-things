@@ -5,16 +5,12 @@ import { connect } from 'react-redux';
 import queryString from 'query-string';
 import { ChromePicker } from 'react-color';
 import { getCurrentColor } from '../app/reducers';
-import { updateColor } from '../app/actions';
-import { updatePage } from './actions';
 import styles from './SearchInput.css';
 
 class SearchInput extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,    
     color: PropTypes.string,
-    updateColor: PropTypes.func.isRequired,
-    updatePage: PropTypes.func.isRequired
   };
 
   handleChangeComplete = ({ hex }) => {
@@ -39,6 +35,5 @@ class SearchInput extends Component {
 export default withRouter(connect(
   state => ({
     color: getCurrentColor(state),
-  }),
-  { updateColor, updatePage }
+  })
 )(SearchInput));

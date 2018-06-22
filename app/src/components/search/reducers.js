@@ -1,6 +1,5 @@
 export const RESULTS_LOAD = 'RESULTS_LOAD';
 export const ITEM_FEATURE = 'ITEM_FEATURE';
-export const PAGE_UPDATE = 'PAGE_UPDATE';
 
 export const getItems = state => state.items;
 export const getDetailedItem = state => state.detailedItem;
@@ -36,8 +35,8 @@ export function results(state = null, { type, payload }) {
 
 export function page(state = null, { type, payload }) {
   switch(type) {
-    case PAGE_UPDATE:
-      return payload;
+    case RESULTS_LOAD:
+      return payload.page;
     default:
       return state;
   }

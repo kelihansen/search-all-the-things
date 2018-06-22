@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import queryString from 'query-string';
 import { getCurrentColor } from '../app/reducers';
 import { getPage, getTotalResults } from './reducers';
-import { updatePage } from './actions';
 import './Results.css';
 
 class Results extends Component {
@@ -14,7 +13,6 @@ class Results extends Component {
     results: PropTypes.number,
     color: PropTypes.string,
     page: PropTypes.string,
-    updatePage: PropTypes.func.isRequired
   };
 
   handlePage(increment) {
@@ -45,6 +43,5 @@ export default withRouter(connect(
     color: getCurrentColor(state),
     page: getPage(state),
     results: getTotalResults(state)
-  }),
-  { updatePage }
+  })
 )(Results));
