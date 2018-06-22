@@ -8,7 +8,6 @@ import {
   results,
   getTotalResults,
   page,
-  PAGE_UPDATE,
   getPage
 } from './reducers';
 
@@ -65,7 +64,7 @@ describe('page reducer', () => {
 
   it('updates the page', () => {
     const pageNumber = 2;
-    const state = page(null, { type: PAGE_UPDATE, payload: pageNumber });
+    const state = page(null, { type: RESULTS_LOAD, payload: { page: pageNumber } });
     expect(state).toEqual(pageNumber);
   });
 });

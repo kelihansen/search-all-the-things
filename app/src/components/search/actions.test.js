@@ -5,11 +5,10 @@ jest.mock('../../services/api', () => ({
 
 import {
   RESULTS_LOAD,
-  ITEM_FEATURE,
-  PAGE_UPDATE
+  ITEM_FEATURE
 } from './reducers';
 
-import { loadResults, featureItem, updatePage } from './actions';
+import { loadResults, featureItem } from './actions';
 
 import { getMatchingItems, getItemById } from '../../services/api';
 
@@ -39,9 +38,5 @@ describe('item action creators', () => {
     expect(getItemById.mock.calls.length).toBe(1);
     expect(getItemById.mock.calls[0][0]).toBe(id);
     expect(payload).toBe(promise);
-  });
-
-  it('creates an update page action', () => {
-    expect(updatePage('5')).toEqual({ type: PAGE_UPDATE, payload: '5' });
   });
 });
