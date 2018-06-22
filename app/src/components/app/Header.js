@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './Header.css';
@@ -23,13 +23,13 @@ class Header extends Component {
         <h1>Explore the Museum</h1>
         <nav>
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link onClick={history.location.pathname === '/search' ? e => e.preventDefault() : null} to="/search">Search</Link></li>
-            <li><Link to="/saved">Saved</Link></li>
-            {user ? <li><Link to="/" onClick={logout}>Log Out</Link></li>
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink onClick={history.location.pathname === '/search' ? e => e.preventDefault() : undefined} to="/search">Search</NavLink></li>
+            <li><NavLink to="/saved">Saved</NavLink></li>
+            {user ? <li><NavLink to="/" onClick={logout}>Log Out</NavLink></li>
               : <Fragment>
-                <li><Link to="/auth/signin">Sign In</Link></li>
-                <li><Link to="/auth/signup">Sign Up</Link></li>
+                <li><NavLink to="/auth/signin">Sign In</NavLink></li>
+                <li><NavLink to="/auth/signup">Sign Up</NavLink></li>
               </Fragment>}
             
           </ul>
