@@ -6,8 +6,8 @@ export const COLOR_UPDATE = 'COLOR_UPDATE';
 
 import { LOGOUT } from '../auth/reducers';
 
-export const getLoading = state => state.error;
-export const getError = state => state.loading;
+export const getLoading = state => state.loading;
+export const getError = state => state.error;
 export const getCurrentColor = state => state.color;
 
 export function loading(state = false, { type }) {
