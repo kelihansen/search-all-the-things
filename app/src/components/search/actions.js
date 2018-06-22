@@ -8,7 +8,7 @@ import {
 export function loadResults(color, page) {
   return {
     type: RESULTS_LOAD,
-    payload: getMatchingItems(color, page).then(({ items, totalResults }) => ({ items, totalResults, color, page }))
+    payload: getMatchingItems(color, page).then(({ items, totalResults }) => ({ items, totalResults, page }))
   };
 }
 

@@ -15,8 +15,9 @@ import { getMatchingItems, getItemById } from '../../services/api';
 
 describe('item action creators', () => {
   it('creates a load action for a page of items', () => {
-    const promise = Promise.resolve();
-    getMatchingItems.mockReturnValueOnce(promise);
+    const data = { items: ['item'], totalResults: 1 };
+    const results = Promise.resolve(data);
+    getMatchingItems.mockReturnValueOnce(results);
 
     const color = '123456';
     const page = '1';
@@ -25,7 +26,7 @@ describe('item action creators', () => {
     expect(getMatchingItems.mock.calls.length).toBe(1);
     expect(getMatchingItems.mock.calls[0][0]).toBe(color);
     expect(getMatchingItems.mock.calls[0][1]).toBe(page);
-    expect(payload).toBe(promise);
+    expect(payload).resolves.toEqual({ ...data, page });
   });
 
   it('creates an feature action for a detailed item', () => {
