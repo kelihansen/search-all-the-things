@@ -1,0 +1,9 @@
+:local(.status) {
+  min-height: 3em;
+  padding-top: 1rem;
+  h2 {
+    font-size: 1.25em;
+    text-align: center;
+    font-style: oblique;
+  }
+}

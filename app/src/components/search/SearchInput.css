@@ -1,0 +1,15 @@
+:local(.search) {
+  background-color: white;
+  padding-bottom: 2rem;
+  label {
+    font-size: 1.15em;
+    line-height: 3em;
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+  }
+  input {
+    margin: 1.5rem 0.5rem 0.5rem 0.5rem;
+  }
+}
+
