@@ -17,4 +17,4 @@ Color picker from: http://casesandberg.github.io/react-color
 1. Search all the things!
 
 ## To simply enjoy searching
-Sign up (with a pretend email, if you prefer) at https://search-the-museum.herokuapp.com!
+Sign up (with a pretend email, if you prefer) at https://explore-the-museum.herokuapp.com!
